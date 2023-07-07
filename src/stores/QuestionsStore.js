@@ -1,5 +1,16 @@
-import { writable, readable } from 'svelte/store';
+/*
+ * QuestionsStore
+ *
+ * Mantem uma store das perguntas que podem formar o questionário
+ *
+ * A store é somente leitura
+ *
+ */
 
+// Importa a definição de uma store que permite definição e leitura
+import { readable } from 'svelte/store';
+
+// Constroi a store de questões
 const QuestionsStore = readable([
 	{
 		cat: "Presteza", ques: "Os títulos de telas, janelas e caixas de diálogo estão no alto, centrados ou justificados a à esquerda?"
@@ -443,4 +454,5 @@ const QuestionsStore = readable([
 	},
 ]);
 
+// Disponibiliza a store para uso por componentes
 export default QuestionsStore;

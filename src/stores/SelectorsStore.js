@@ -1,5 +1,16 @@
+/*
+ * SelectorsStore
+ * 
+ * Mantem uma store das máscaras de seleção para indentificar elementos no código do iframe
+ * 
+ * A store é somente leitura 
+ * 
+ */
+
+// Importa a definição de uma store que permite definição e leitura
 import { readable } from 'svelte/store';
 
+// Constroi a store de máscaras de seleção
 const SelectorsStore = readable([
     { name: "a_link", param: "a[href]" },
     { name: "audio", param: "audio[controls]" },
@@ -15,4 +26,5 @@ const SelectorsStore = readable([
     { name: "video", param: "video[controls]" }
 ]);
 
+// Disponibiliza a store para uso por componentes
 export default SelectorsStore;

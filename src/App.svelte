@@ -1,15 +1,22 @@
 <script>
+	// Importa os componentes a ser usado na aplicação.
 	import HtmlInjectorForm from "./components/HtmlInjectorForm.svelte";
 	import InquiryForm from "./components/InquiryForm.svelte";
+	// Importa as Stores de Seletores, Questões e Tipos de Questão
 	import SelectorsStore from "./stores/SelectorsStore.js";
 	import QuestionsStore from "./stores/QuestionsStore.js";
 	import QuestionsTypeStore from "./stores/QuestionsTypeStore.js";
 
+	// Define o modo de operação da aplicação
 	let pageOri = "left";
+	// Define a variável do código fonte a ser carregado
 	let srcdoc = "";
+	// Define a variável para os resultados do processamento da página montada no iframe
 	let results = [];
+	// Define a variável para o questionário
 	let inquiry = [];
 
+	// Define a função de processamento por seletor
 	const processQuery = (cValue, index, array) => {
 		const iFrameDoc =
 			document.querySelector("iframe").contentWindow.document;
@@ -20,10 +27,12 @@
 		};
 	};
 
+	// Define a função de processamento da página montada
 	const processLoadedPage = () => {
 		results = $SelectorsStore.map(processQuery);
 	};
 
+	// Define a função de trrancisão do modo de operação da aplicação
 	const toggleApp = () => {
 		if (pageOri == "left") {
 			const questions = $QuestionsTypeStore.flatMap((tv) =>
@@ -51,6 +60,7 @@
 		pageOri = pageOri == "left" ? "right" : "left";
 	};
 
+	// Define a função que monta o código HTML no <iframe/>
 	const loadPage = (e) => {
 		results = [];
 		srcdoc = e.detail;

@@ -1,10 +1,15 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    // Importa a store para salvar os questionários respondidos
     import { saveInquiries } from "../stores/InquiriesStore.js";
+
+    // Importa e define a função para dispachar eventos
+    import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
+    // Define e disponibiliza a váriavel do questionário a responder.
     export let inquiry = [];
 
+    // Define o método que registra o questionário respondido e sinaliza a aplicação a resetar o app.
     const registerInquiry = ()=>{
         saveInquiries(inquiry);
         dispatch('toggleApp');
